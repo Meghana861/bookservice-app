@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { getBooks } from '../services/bookService';
+import axios from 'axios';
+
+const BOOK_API_BASE_URL = 'http://localhost:9090/books';
 
 const BookList = () => {
     const [books, setBooks] = useState([]);
 
     useEffect(() => {
-        getBooks()
+        axios.get(BOOK_API_BASE_URL)
             .then(response => {
                 setBooks(response.data);
             })
@@ -23,7 +25,7 @@ const BookList = () => {
                 <ul>
                     {books.map(book => (
                         <li key={book.id}>
-                            <strong>{book.title}</strong> by {book.authorName}
+                            <strong>{book.title}</strong> by {book.author}
                         </li>
                     ))}
                 </ul>
