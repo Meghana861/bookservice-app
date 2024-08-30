@@ -1,37 +1,39 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React from "react";
+import { useState } from "react";
+import { useEffect } from "react";
+import axios from "axios";
+const book_url='http://localhost:8080/books';
+const BookList=()=>{
+  const[books,setBooks]=useState('');
+  useEffect(()=>{
+    axios.get(book_url)
+  .then(
+    response=>setBooks(response.data)
+  )
+  .catch(error=>console.error('Error Fetching books'))
+},[]);
 
-const BOOK_API_BASE_URL = 'http://localhost:9090/books';
 
-const BookList = () => {
-    const [books, setBooks] = useState([]);
+  let content;
+   if(books.length===0){
+    content=<p>No Books Available</p>;
+}
+else{
+    content=(
+    <ul>
+      {books.map(book=>
+        (<li key={book.id}><bold>{book.title} by {book.author}</bold>
+        </li>
+    ))}
+    </ul>
+    )
+}
+  return (
+    <div>
+       <h2> List of Books</h2>
+        {content}
+    </div>
+  )
 
-    useEffect(() => {
-        axios.get(BOOK_API_BASE_URL)
-            .then(response => {
-                setBooks(response.data);
-            })
-            .catch(error => {
-                console.error('There was an error fetching the books!', error);
-            });
-    }, []);
-
-    return (
-        <div>
-            <h2>Book List</h2>
-            {books.length === 0 ? (
-                <p>No books available</p>
-            ) : (
-                <ul>
-                    {books.map(book => (
-                        <li key={book.id}>
-                            <strong>{book.title}</strong> by {book.author}
-                        </li>
-                    ))}
-                </ul>
-            )}
-        </div>
-    );
-};
-
+}
 export default BookList;
