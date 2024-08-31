@@ -5,6 +5,7 @@ import React from 'react';
 
 import BookList from './components/BookList.js';
 import PostBook from './components/PostBooks.js';
+import PlaceOrder from './components/PlaceOrder.js';
 function App() {
     return (
         // <Router>
@@ -16,6 +17,7 @@ function App() {
         <div>
             <BookList/>
             <PostBook/>
+            <PlaceOrder/>
         </div>
     );
 }

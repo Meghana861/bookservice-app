@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import { useEffect } from "react";
 import axios from "axios";
 const postbook_url='http://localhost:8080/books/save'
 const PostBook=()=>{
@@ -35,21 +34,24 @@ const PostBook=()=>{
         <form onSubmit={handleSubmit}>
         <div>
         <label>Title</label>
-        <input type="text" value={title} onChange={e.target.value}/>
+        <input type="text" value={title} onChange={(e)=>setTitle(e.target.value)}/>
         </div>
         <div>
             <label>Author</label>
-            <input typr="text" value={author} onChange={e.target.value}/>
+            <input typr="text" value={author} onChange={(e)=>setAuthor(e.target.value)}/>
         </div>
         <div>
             <label>Price</label>
-            <input typr="text" value={price} onChange={e.target.value}/>
+            <input typr="text" value={price} onChange={(e)=>setPrice(e.target.value)}/>
         </div>
         <div>
             <label>PubDate</label>
-            <input typr="text" value={PubDate} onChange={e.target.value}/>
+            <input typr="text" value={pubDate} onChange={(e)=>setPubDate(e.target.value)}/>
         </div>
        <button type="submit">Add Book</button>
+       {message &&<p>{message}</p>}
+       {/*Initially the message is empty and then it renders when the message is truth 
+       and paragraphy tag message will be rendered*/}
         </form>
         </div>
     )
