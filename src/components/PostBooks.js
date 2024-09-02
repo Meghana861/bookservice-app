@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
-const postbook_url='http://localhost:8080/books/save'
+const postbook_url='http://localhost:8080/books-process'
 const PostBook=()=>{
     const[title,setTitle]=useState('')
     const[author,setAuthor]=useState('')
@@ -18,10 +18,10 @@ const PostBook=()=>{
         axios.post(postbook_url,newbook)
         .then(response=>{
             setMessage('Book added successfully');
-        setTitle('');
-        setAuthor('');
-       setPrice('');
-    setPubDate('');
+            setTitle('');
+            setAuthor('');
+            setPrice('');
+            setPubDate('');
   })
   .catch(error=>{
     console.error('There was an error adding the book!', error);

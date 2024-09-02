@@ -1,23 +1,25 @@
 import React from 'react';
-//import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 //import BookList from './components/BookList';
 // import Login from './Login.js';
 
 import BookList from './components/BookList.js';
-import PostBook from './components/PostBooks.js';
-import PlaceOrder from './components/PlaceOrder.js';
+// import PostBook from './components/PostBooks.js';
+ import PlaceOrder from './components/PlaceOrder.js';
+//  import Register from './components/Register.js';
+ import Login from './components/Login.js';
 function App() {
     return (
-        // <Router>
-        //     <Routes>
-        //         <Route path="/login" element={<Login/>}></Route>
-                
-        // </Routes>
-        // </Router>
         <div>
-            <BookList/>
-            <PostBook/>
-            <PlaceOrder/>
+           <Router>
+                <Routes>
+            {/* { <Route path="/" element={<Register/>}></Route> } */}
+            <Route path='/login' element={<Login/>}></Route>
+            <Route path="/books" element={<BookList/>}></Route>
+            {/* <Route path="/postbook" element={<PostBook/>}></Route>*/}
+            <Route path="/placeorder" element={<PlaceOrder/>}></Route> 
+            </Routes>
+            </Router>
         </div>
     );
 }

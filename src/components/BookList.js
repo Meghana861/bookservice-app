@@ -2,7 +2,8 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
-const book_url='http://localhost:8080/books';
+import { useNavigate } from "react-router-dom";
+const book_url='http://localhost:8080/books-process';
 const BookList=()=>{
   const[books,setBooks]=useState('');
   const[message,setMessage]=useState('');
@@ -11,6 +12,7 @@ const BookList=()=>{
   const [updatedAuthor, setUpdatedAuthor] = useState('');
   const[updatedPrice,setUpdatedPrice]=useState('')
   const[updatedpubDate,setUpdatedPubDate]=useState('')
+  const navigate=useNavigate();
   useEffect(()=>{
     axios.get(book_url)
   .then(
@@ -54,6 +56,10 @@ const updatedBook={
     )
     setMessage("Updated Books Successfully")
   })
+  }
+
+  const handlePlaceOrder=()=>{
+    navigate('/placeOrder')
   }
 
   let content;
@@ -103,6 +109,7 @@ else{
             </div>
         )}
         {message && <p>{message}</p>}
+        <button onClick={handlePlaceOrder} style={{ marginLeft: '10px', color: 'pink' }}>Place Order</button>
     </div>
   )
 
