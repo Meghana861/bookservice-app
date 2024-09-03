@@ -20,7 +20,7 @@ const Login=()=>{
             setMessage("Login Successful");
             setEmail('');
             setPassword('');
-            navigate('/placeorder');
+            navigate('/placeorder',{state:{userName:response.data.name,id:response.data.id}});
         } else {
             setMessage("Invalid email or password");
         }

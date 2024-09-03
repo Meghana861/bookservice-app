@@ -27,7 +27,7 @@ const Register=()=>{
       setPassword('');
       setPhoneNumber('');
       setAddress('');
-      navigate('/bookList')
+      navigate('/books')
     }
     )
    
